@@ -36,6 +36,12 @@ connect({
   localAddress: 'foobar',
 }, /^TypeError: "localAddress" option must be a valid IP: foobar$/);
 
+connect({
+  host: 'localhost',
+  port: common.PORT,
+  lookup: 'foobar',
+}, /^TypeError: "lookup" option should be a function$/);
+
 function connect(opts, msg) {
   assert.throws(function() {
     net.connect(opts);
